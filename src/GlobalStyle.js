@@ -4,6 +4,7 @@ const GlobalStyle = createGlobalStyle`
     :root {
         --lightBlue: rgb(118, 178, 184);
         --lightBlueHover: rgb(86, 131, 135);
+        --lightGray: #bdbbb7;
         --fontSmallest: 0.75rem;
         --fontSmall: 0.875rem;
         --fontReg: 1rem;

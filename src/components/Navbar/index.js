@@ -7,7 +7,7 @@ const Navbar = ({ userImage }) => (
         <Content>
             <Link to='' >Home</Link>
             <Link to='' >Create Post</Link>
-            <Link to='' >Login</Link>
+            <Link to='/login' >Login</Link>
             <Link to='' >Chat</Link>
             <Link to='' >Profile</Link>
         </Content>
