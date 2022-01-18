@@ -1,25 +1,18 @@
 import React from "react";
 import { useAppContext } from "../../context";
+import NavLinks from '../NavLinks';
 import { Wrapper, Content, Image } from './Navbar.styles';
 import { SidebarButton } from '../Button/Button.styles';
-import { Link } from "react-router-dom";
 import { GiHamburgerMenu } from 'react-icons/gi';
 import NoImg from '../../images/NoImg.png';
 
 const Navbar = () => {
-    const { user, openSidebar } = useAppContext()
+    const { openSidebar } = useAppContext()
   
     return (
         <Wrapper>
             <Content>
-                <Link to='/' >Home</Link>
-                <Link to='' >Create Post</Link>
-                {user
-                    ? <Link to='/logout'>Logout</Link>
-                    : <Link to='/login'>Login</Link>
-                }
-                <Link to='' >Chat</Link>
-                <Link to='' >Profile</Link>
+                <NavLinks />
             </Content>
             <Content>
                 <Image src={NoImg} alt='profile-picture'/>
