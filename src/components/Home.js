@@ -1,15 +1,14 @@
-import React, { createContext, useEffect } from 'react';
-// Components
-import Navbar from './Navbar';
-// Images
-import NoImage from '../images/NoImg.png';
+import React from 'react';
+import { Navigate } from 'react-router-dom';
+import { useAppContext } from '../context';
 
 const Home = () => {
-      
+    const { user } = useAppContext()
     return (
-    <>
-    <div></div>
-    </>
+        <>
+        {!user && <Navigate to='/login' />}
+        <div>Home</div>
+        </>
     );
 };
 

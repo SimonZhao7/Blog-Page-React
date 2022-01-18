@@ -5,6 +5,7 @@ const GlobalStyle = createGlobalStyle`
         --lightBlue: rgb(118, 178, 184);
         --lightBlueHover: rgb(86, 131, 135);
         --lightGray: #bdbbb7;
+        --darkGray: #666461;
         --fontSmallest: 0.75rem;
         --fontSmall: 0.875rem;
         --fontReg: 1rem;
@@ -23,6 +24,10 @@ const GlobalStyle = createGlobalStyle`
 
         width: 100%;
         height: 100%;
+    }
+
+    main {
+        padding-top: 50px;
     }
 `;
 

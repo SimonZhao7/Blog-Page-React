@@ -6,15 +6,18 @@ import { Link } from "react-router-dom";
 import { GiHamburgerMenu } from 'react-icons/gi';
 import NoImg from '../../images/NoImg.png';
 
-const Navbar = ({ userImage }) => {
-    const { openSidebar } = useAppContext()
-
+const Navbar = () => {
+    const { user, openSidebar } = useAppContext()
+  
     return (
         <Wrapper>
             <Content>
-                <Link to='' >Home</Link>
+                <Link to='/' >Home</Link>
                 <Link to='' >Create Post</Link>
-                <Link to='/login' >Login</Link>
+                {user
+                    ? <Link to='/logout'>Logout</Link>
+                    : <Link to='/login'>Login</Link>
+                }
                 <Link to='' >Chat</Link>
                 <Link to='' >Profile</Link>
             </Content>

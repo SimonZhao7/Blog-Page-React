@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Navigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import Error from './Error';
 import { Button } from './Button/Button.styles';
 import { Form } from './Form/Form.styles';
@@ -13,7 +14,6 @@ const Register = () => {
         e.preventDefault()
 
         const data = {...formState}
-        console.log(data)
 
         try {
             const response = await fetch('http://localhost:8000/api/CustomUserAPI/', {
@@ -23,7 +23,6 @@ const Register = () => {
             })
             const result = await response.json()
             if (response.status >= 200 && response.status <= 299) {
-                console.log('redirect pls')
                 setRedirect(true)
             } else {
                 setErrors(result)
@@ -58,6 +57,7 @@ const Register = () => {
             <Error errors={errors.password2}/>
             <label>Confirm Password</label>
             <input type="password" placeholder="Re-enter your password" name="password2" onChange={handleChange} required />
+            <p>Already have an account? Log in <Link to='/login'>here</Link></p>
             <Button type='submit'>Register</Button>
         </Form>  
         </> 

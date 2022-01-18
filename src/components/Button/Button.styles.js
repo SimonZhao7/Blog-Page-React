@@ -8,6 +8,7 @@ export const Button = styled.button`
     width: ${props => props.width ? props.width : "100%"};
     border-radius: 3px;
     font-size: var(--fontReg);
+    transition: background-color 0.25s;
 
     display: flex;
     align-items: center;
