@@ -2,13 +2,8 @@ import React from 'react';
 import Navbar from './Navbar';
 import RegisterForm from './RegisterForm';
 
-const Register = () => {
-   return (
-       <main>
-            <Navbar />
-            <RegisterForm />
-       </main>
-   )
-}
+const Register = () => (
+    <RegisterForm />
+)
 
 export default Register;

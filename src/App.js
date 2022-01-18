@@ -1,23 +1,23 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router} from 'react-router-dom';
 // Global Style
 import GlobalStyle from './GlobalStyle';
+// Context
+import { AppProvider } from './context';
 // Components
-import Home from './components/Home';
-import Login from './components/Login';
+import Main from './components/Main';
+import Navbar from './components/Navbar';
+import Sidebar from './components/Sidebar';
 
-const App= () => {
-  const [userState, setUserState] = useState(defaultState);
+const App = () => {
   return (
     <Router>
-      <UserContext.Provider value={[userState, setUserState]}>
-        <Routes>
-          <Route path='/' element={<Home />}/>
-          <Route path='/login' element={<Login />}/>
-          <Route path='/register' element={<Register />}/>
-        </Routes>
+      <AppProvider>
+        <Navbar />
+        <Sidebar />
+        <Main />
         <GlobalStyle />
-      </UserContext.Provider>
+      </AppProvider>
     </Router>
   );
 };

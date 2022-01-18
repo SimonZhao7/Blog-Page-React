@@ -15,6 +15,7 @@ export const Wrapper = styled.nav`
         padding: 5px 8px;
 
         @media screen and (max-width: 768px) {
+            display: none;
             font-size: var(--fontSmall);
         }
 

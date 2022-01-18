@@ -17,7 +17,7 @@ const GlobalStyle = createGlobalStyle`
         font-family: 'Open Sans', sans-serif;
     }
 
-    html, body {
+    html, body, main, #root {
         margin: 0;
         padding: 0;
 
