@@ -7,7 +7,7 @@ export const Wrapper = styled.nav`
     height: 50px;
     width: 100%;
     padding: 10px;
-    position: absolute;
+    position: fixed;
 
     a {
         color: white;

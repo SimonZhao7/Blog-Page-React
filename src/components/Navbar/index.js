@@ -7,7 +7,7 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 import NoImg from '../../images/NoImg.png';
 
 const Navbar = () => {
-    const { openSidebar } = useAppContext()
+    const { user, openSidebar } = useAppContext()
   
     return (
         <Wrapper>
@@ -15,7 +15,9 @@ const Navbar = () => {
                 <NavLinks />
             </Content>
             <Content>
-                <Image src={NoImg} alt='profile-picture'/>
+                {user && 
+                    <Image src={user ? `http://localhost:8000${user.profile_picture}` : NoImg} alt='profile-picture'/>
+                }
                 <SidebarButton onClick={openSidebar}><GiHamburgerMenu /></SidebarButton>
             </Content>
         </Wrapper>

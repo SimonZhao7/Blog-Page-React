@@ -36,6 +36,7 @@ export const AppProvider = ({ children }) => {
         localStorage.clear()
         setUser(null)
         setToken(null)
+        closeSidebar()
     }
 
     return (

@@ -10,11 +10,12 @@ export const Content = styled.div`
     transition: width 0.5s;
 
     a {
+        display: block;
         color: white;
         text-decoration: none;
-        display: block;
         width: 100%;
         padding: 10px 15px;
+        overflow-x: hidden;
         
         :hover {
             background-color: var(--lightBlueHover);
@@ -23,5 +24,33 @@ export const Content = styled.div`
 
     @media screen and (min-width: 768px) {
         display: none;
+    }
+`
+
+export const UserWrapper = styled.div`
+    display: flex;
+    color: white;
+    padding: 10px;
+    gap: 15px;
+
+    img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+    }
+`
+
+export const UserInfo = styled.div`
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-between;
+
+    h4 {
+        margin: 15px 0 0;
+    }
+
+    button {
+        margin-bottom: 10px;
     }
 `

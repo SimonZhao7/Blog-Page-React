@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Button = styled.button`
-    background-color: var(--lightBlue);
+    background: ${props => props.color ? props.color : 'var(--lightBlue)'};
     border: 0;
     color: white;
     height: 40px;
@@ -15,7 +15,7 @@ export const Button = styled.button`
     justify-content: center;
 
     :hover {
-        background-color: var(--lightBlueHover);
+        background: ${props => props.hoverColor ? props.hoverColor : 'var(--lightBlueHover)'}
     }
 `;
 
@@ -23,4 +23,9 @@ export const SidebarButton = styled(Button)`
     @media screen and (min-width: 768px) {
         display: none;
     }
+`
+
+export const ThinButton = styled(Button)`
+    height: 15px;
+    font-size: var(--fontSmall);
 `
