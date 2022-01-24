@@ -14,7 +14,10 @@ export const NavLinks = () => {
             : <Link to='/login' onClick={closeSidebar}>Login</Link>
         }
         <Link to='' onClick={closeSidebar}>Chat</Link>
-        <Link to='' onClick={closeSidebar}>Profile</Link>
+        {user 
+            ? <Link to={`${user.username}`} onClick={closeSidebar}>Profile</Link>
+            : <Link to='' onClick={closeSidebar}>Profile</Link>
+        }
         </>
     )
 }

@@ -1,10 +1,13 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
+import { FullWrapper } from '../../GlobalStyle';
 
 
 // Redirect to login
 const Logout = () => (
-    <Navigate to='/login' />
+    <FullWrapper>
+        <Navigate to='/login' />
+    </FullWrapper>
 )
 
 export default Logout

@@ -8,6 +8,7 @@ export const Content = styled.div`
     width: ${props => props.open ? '45%' : '0%'};
     right: 0;
     transition: width 0.5s;
+    overflow: hidden;
 
     a {
         display: block;

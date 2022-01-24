@@ -5,7 +5,7 @@ import GlobalStyle from './GlobalStyle';
 // Context
 import { AppProvider } from './context';
 // Components
-import Main from './components/Main';
+import Main from './pages/Main';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 

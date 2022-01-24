@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Navigate } from "react-router-dom";
-import { useAppContext } from "../context";
-import Error from "./Error";
-import { Form } from './Form/Form.styles';
-import { Button } from './Button/Button.styles';
+import { useAppContext } from "../../context";
+import Error from "../../components/Error";
+import { Form } from '../../components/Form/Form.styles';
+import { Button } from '../../components/Button/Button.styles';
+import { FullWrapper } from "../../GlobalStyle";
 
 
 const Login = () => {
@@ -46,16 +47,18 @@ const Login = () => {
     }
 
     return (
-        <Form onSubmit={handleSubmit}>
-            <legend>Login</legend>
-            <Error errors={errors.non_field_errors} nonField={true}/>
-            <label>Username</label>
-            <input type='text' name='username' onChange={handleChange} required/>
-            <label>Password</label>
-            <input type='password' name='password' onChange={handleChange} required/>
-            <p>Don't have an account? Register for one <a href='/register'>here</a></p>
-            <Button>Log In</Button>
-        </Form>
+        <FullWrapper>
+            <Form onSubmit={handleSubmit}>
+                <legend>Login</legend>
+                <Error errors={errors.non_field_errors} nonField={true}/>
+                <label>Username</label>
+                <input type='text' name='username' onChange={handleChange} required/>
+                <label>Password</label>
+                <input type='password' name='password' onChange={handleChange} required/>
+                <p>Don't have an account? Register for one <a href='/register'>here</a></p>
+                <Button>Log In</Button>
+            </Form>
+        </FullWrapper>
     )
 }
 

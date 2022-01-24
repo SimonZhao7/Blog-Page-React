@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
     :root {
@@ -28,7 +28,14 @@ const GlobalStyle = createGlobalStyle`
 
     main {
         padding-top: 50px;
+        background: #f0f0f0;
     }
 `;
+
+export const FullWrapper = styled.div`
+    width: 100%;
+    height: 100%;
+    background: white;
+`
 
 export default GlobalStyle;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import { useAppContext } from '../context';
+import { useAppContext } from '../../context';
 
 const Home = () => {
     const { user } = useAppContext()
