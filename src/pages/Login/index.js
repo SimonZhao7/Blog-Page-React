@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Navigate } from "react-router-dom";
 import { useAppContext } from "../../context";
 import Error from "../../components/Error";
-import { Form } from '../../components/Form/Form.styles';
-import { Button } from '../../components/Button/Button.styles';
+import { Form } from '../../GlobalStyle';
+import { Button } from '../../GlobalStyle';
 import { FullWrapper } from "../../GlobalStyle";
 
 

@@ -32,10 +32,123 @@ const GlobalStyle = createGlobalStyle`
     }
 `;
 
+// Wrappers
 export const FullWrapper = styled.div`
     width: 100%;
     height: 100%;
     background: white;
+`
+
+export const ContentWrapper = styled.div`
+    width: 100%;
+    height: 100%;
+    background: white;
+    padding: 20px;
+
+    @media screen and (min-width: 768px) {
+        width: 70%;
+        margin: auto;
+    }
+
+    @media screen and (min-width: 1200px) {
+        width: 60%;
+        margin: auto;
+    }
+`
+
+// Forms
+export const Form = styled.form`
+    margin: 0 auto;
+    padding-top: 50px;
+    width: 575px;
+
+    legend {
+        font-size: var(--fontMed);
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    input {
+        width: 100%;
+        height: 40px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        border: var(--lightGray) solid 2px;
+        color: black;
+
+        transition: border-color 0.3s;
+
+        :hover {
+            border-color: var(--darkGray);
+        }
+    }
+
+    p {
+        margin: 0 0 10px 0;
+        text-align: center;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    @media screen and (max-width: 575px) {
+        width: 100%;
+        padding: 50px 10px 0;
+    }
+`
+
+// Buttons
+export const Button = styled.button`
+    background: ${props => props.color ? props.color : 'var(--lightBlue)'};
+    border: 0;
+    color: white;
+    height: 40px;
+    width: ${props => props.width ? props.width : "100%"};
+    border-radius: 3px;
+    font-size: var(--fontReg);
+    transition: background-color 0.25s;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    :hover {
+        background: ${props => props.hoverColor ? props.hoverColor : 'var(--lightBlueHover)'}
+    }
+`;
+
+export const SidebarButton = styled(Button)`
+    @media screen and (min-width: 768px) {
+        display: none;
+    }
+`
+
+export const ThinButton = styled(Button)`
+    height: 15px;
+    font-size: var(--fontSmall);
+`
+
+// Spinner
+export const Spinner = styled.div`
+    border: var(--lightGray) solid 5px;
+    border-top: var(--darkGray) solid 5px;
+    border-radius: 50%;
+    animation: spin 0.5s infinite linear; 
+    margin: auto;
+
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    width: 40px;
+    height: 40px;
 `
 
 export default GlobalStyle;

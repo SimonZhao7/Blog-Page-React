@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Navigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import Error from '../../components/Error';
-import { Button } from '../../components/Button/Button.styles';
-import { Form } from '../../components/Form/Form.styles';
+import { Button } from '../../GlobalStyle';
+import { Form } from '../../GlobalStyle';
 import { FullWrapper } from '../../GlobalStyle';
 
 const Register = () => {

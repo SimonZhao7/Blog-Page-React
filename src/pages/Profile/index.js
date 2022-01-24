@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import { useAppContext } from "../../context";
-import { UserWrapper, UserContent } from './Profile.styles';
-import { Spinner } from '../../components/Spinner/Spinner.styles';
+import { ContentWrapper } from "../../GlobalStyle";
+import { UserContent } from './Profile.styles';
+import { Spinner } from '../../GlobalStyle';
 import UserDetail from '../../components/UserDetail';
 
 
@@ -27,14 +28,14 @@ const Profile = () => {
 
     if (loading) {
         return(
-            <UserWrapper>
+            <ContentWrapper>
                 <Spinner></Spinner>
-            </UserWrapper>
+            </ContentWrapper>
         )
     }
 
     return (
-        <UserWrapper>
+        <ContentWrapper>
             {!user && 
                 <Navigate to='/login'/>
             }
@@ -42,7 +43,7 @@ const Profile = () => {
                 <img src={`http://localhost:8000${viewedUser.profile_picture}`} alt='profile-pic' />
                 <UserDetail {...viewedUser} />
             </UserContent>
-        </UserWrapper>
+        </ContentWrapper>
     )
 }
 

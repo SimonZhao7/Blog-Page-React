@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { ThinButton } from "../Button/Button.styles";
-import { UserInfo, UserNumbers } from "../../pages/Profile/Profile.styles";
+import { ThinButton } from '../../GlobalStyle';
+import { UserInfo, UserNumbers } from './UserDetail.styles';
 import { useAppContext } from "../../context";
 
 

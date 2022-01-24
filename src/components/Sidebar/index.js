@@ -2,7 +2,7 @@ import React from 'react';
 import { useAppContext } from '../../context';
 import NavLinks from '../NavLinks';
 import { Content, UserWrapper, UserInfo } from './Sidebar.styles';
-import { ThinButton } from '../Button/Button.styles';
+import { ThinButton } from '../../GlobalStyle';
 import NoImg from '../../images/NoImg.png';
 
 
@@ -14,7 +14,7 @@ const Sidebar = () => {
             <NavLinks />
             {user && 
                 <UserWrapper open={sidebarIsOpen}>
-                    <img src={user ? `http://localhost:8000${user.profile_picture}` : NoImg} alt='profile-picture' />
+                    <img src={user ? `http://localhost:8000${user.profile_picture}` : NoImg} alt='ppic' />
                     <UserInfo >
                         <h4>{user.username}</h4>
                         <ThinButton color={'var(--lightGray)'} hoverColor={'var(--darkGray)'}>Settings</ThinButton>
