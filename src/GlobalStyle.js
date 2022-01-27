@@ -29,6 +29,7 @@ const GlobalStyle = createGlobalStyle`
     main {
         padding-top: 50px;
         background: #f0f0f0;
+        overflow: auto;
     }
 `;
 
@@ -44,15 +45,14 @@ export const ContentWrapper = styled.div`
     height: 100%;
     background: white;
     padding: 20px;
+    margin: auto;
 
     @media screen and (min-width: 768px) {
         width: 70%;
-        margin: auto;
     }
 
     @media screen and (min-width: 1200px) {
         width: 60%;
-        margin: auto;
     }
 `
 
@@ -60,7 +60,8 @@ export const ContentWrapper = styled.div`
 export const Form = styled.form`
     margin: 0 auto;
     padding-top: 50px;
-    width: 575px;
+    width: 100%;
+    max-width: 575px;
 
     legend {
         font-size: var(--fontMed);
@@ -81,6 +82,10 @@ export const Form = styled.form`
         :hover {
             border-color: var(--darkGray);
         }
+    }
+
+    input[type='file'] {
+        display: none;
     }
 
     p {

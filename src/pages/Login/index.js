@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import { Navigate } from "react-router-dom";
 import { useAppContext } from "../../context";
 import Error from "../../components/Error";
-import { Form } from '../../GlobalStyle';
-import { Button } from '../../GlobalStyle';
-import { FullWrapper } from "../../GlobalStyle";
+import { Form, Button, FullWrapper } from '../../GlobalStyle';
 
 
 const Login = () => {

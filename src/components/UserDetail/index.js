@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 import { ThinButton } from '../../GlobalStyle';
 import { UserInfo, UserNumbers } from './UserDetail.styles';
 import { useAppContext } from "../../context";
@@ -51,7 +52,7 @@ const UserDetail = ({ id, username }) => {
             </div>
             <div>
                 {user.username === username &&
-                    <ThinButton width='90%'>Settings</ThinButton>
+                    <ThinButton width='90%'><Link to='/settings'>Settings</Link></ThinButton>
                 }
             </div>
         </UserInfo>

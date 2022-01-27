@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
-import { Navigate } from "react-router-dom";
-import { Link } from 'react-router-dom';
+import { Navigate, Link } from "react-router-dom";
 import Error from '../../components/Error';
-import { Button } from '../../GlobalStyle';
-import { Form } from '../../GlobalStyle';
-import { FullWrapper } from '../../GlobalStyle';
+import { Button, Form, FullWrapper } from '../../GlobalStyle';
 
 const Register = () => {
     const [formState, setFormState] = useState({})

@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import { useAppContext } from "../../context";
-import { ContentWrapper } from "../../GlobalStyle";
+import { ContentWrapper, Spinner } from "../../GlobalStyle";
 import { UserContent } from './Profile.styles';
-import { Spinner } from '../../GlobalStyle';
 import UserDetail from '../../components/UserDetail';
 
 

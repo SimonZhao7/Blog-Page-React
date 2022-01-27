@@ -16,6 +16,12 @@ export const UserInfo = styled.div`
         margin-bottom: 0;
     }
 
+    a {
+        color: white;
+        text-decoration: none;
+        width: 100%;
+    }
+
     @media screen and (max-width: 1200px) {
         h2 {
             font-size: 1.25rem;
