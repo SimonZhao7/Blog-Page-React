@@ -13,8 +13,8 @@ export const Wrapper = styled.ul`
 
 export const Alert = styled.div`
     width: 100%;
-    color: #721c24;
-    background: #f2dede;
+    color: ${props => props.type === 'error' ? '#721c24' : '#0f5132'};
+    background: ${props => props.type === 'error' ? '#f2dede' : '#d1e7dd'};
     padding: 15px;
     border-radius: 5px;
     margin-bottom: 10px;

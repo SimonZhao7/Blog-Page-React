@@ -8,6 +8,8 @@ export const UserContent = styled.div`
     img {
         width: 150px;
         height: 150px;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
         border-radius: 50%;
         border: var(--lightBlue) 2px solid;
 

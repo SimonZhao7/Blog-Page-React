@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Navigate, Link } from "react-router-dom";
-import Error from '../../components/Error';
+import Message from '../../components/Message';
 import { Button, Form, FullWrapper } from '../../GlobalStyle';
 
 const Register = () => {
@@ -42,17 +42,17 @@ const Register = () => {
             {redirect && <Navigate to='/'/>}
             <Form onSubmit={handleSubmit} method='post' encType='multipart/form-data'>
                 <legend>Register</legend>
-                <Error errors={errors.non_field_errors} nonField={true}/>
-                <Error errors={errors.email}/>
+                <Message errors={errors.non_field_errors} nonField={true}/>
+                <Message errors={errors.email}/>
                 <label>Email</label>
                 <input type="text" placeholder="Email" name="email" onChange={handleChange} required />
-                <Error errors={errors.username}/>
+                <Message errors={errors.username}/>
                 <label>Username</label>
                 <input type="text" placeholder="Username" name="username" onChange={handleChange} required />
-                <Error errors={errors.password}/>
+                <Message errors={errors.password}/>
                 <label>Password</label>
                 <input type="password" placeholder="Enter a Password" name="password" onChange={handleChange} required />
-                <Error errors={errors.password2}/>
+                <Message errors={errors.password2}/>
                 <label>Confirm Password</label>
                 <input type="password" placeholder="Re-enter your password" name="password2" onChange={handleChange} required />
                 <p>Already have an account? Log in <Link to='/login'>here</Link></p>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Navigate } from "react-router-dom";
 import { useAppContext } from "../../context";
-import Error from "../../components/Error";
+import Message from "../../components/Message";
 import { Form, Button, FullWrapper } from '../../GlobalStyle';
 
 
@@ -48,7 +48,7 @@ const Login = () => {
         <FullWrapper>
             <Form onSubmit={handleSubmit}>
                 <legend>Login</legend>
-                <Error errors={errors.non_field_errors} nonField={true}/>
+                <Message errors={errors.non_field_errors} nonField={true}/>
                 <label>Username</label>
                 <input type='text' name='username' onChange={handleChange} required/>
                 <label>Password</label>

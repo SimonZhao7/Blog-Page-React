@@ -49,6 +49,7 @@ export const AppProvider = ({ children }) => {
                 closeSidebar,
                 handleSetUser,
                 removeUser,
+                handleFetchUser,
             }}>
             {children}
         </AppContext.Provider>

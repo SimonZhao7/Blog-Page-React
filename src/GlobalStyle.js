@@ -44,11 +44,12 @@ export const ContentWrapper = styled.div`
     width: 100%;
     height: 100%;
     background: white;
-    padding: 20px;
+    padding: 10px;
     margin: auto;
 
     @media screen and (min-width: 768px) {
         width: 70%;
+        padding: 20px;
     }
 
     @media screen and (min-width: 1200px) {
@@ -113,6 +114,7 @@ export const Button = styled.button`
     border-radius: 3px;
     font-size: var(--fontReg);
     transition: background-color 0.25s;
+    ${props => props.extraStyle && props.extraStyle}
 
     display: flex;
     align-items: center;

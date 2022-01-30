@@ -1,52 +1,132 @@
 import React, { useState, useRef } from 'react';
+import { useAppContext } from '../../context';
+import Message from '../../components/Message';
 import { ContentWrapper, Form, Button } from '../../GlobalStyle';
+import { SettingsContent, ButtonsWrapper } from './UserSettings.styles';
 
 
 const UserSettings = () => {
-    const [type, setType] = useState('changeUsername')
+    const { user, token, handleFetchUser } = useAppContext()
+    const [formData, setFormData] = useState({})
+    const [errors, setErrors] = useState([])
+    const [message, setMessage] = useState('')
+    const [type, setType] = useState('change_username')
     const fileRef = useRef(null)
+
+    const handleChange = (event) => {
+        setFormData({
+            ...formData,
+            [event.target.name]: event.target.type === 'file' ? event.target.files[0] : event.target.value,
+        })
+        console.log(formData)
+    }
+
+    const handleSetType = (type) => {
+        setType(type)
+        setFormData({})
+        setErrors([])
+        setMessage()
+    }
+
+    const handleSubmit = async (e) => {
+        const submitData = new FormData()
+        Object.keys(formData).map(key => (
+            submitData.append(key, formData[key])
+        ))
+
+        e.preventDefault()
+
+        try {
+            const response = await fetch(`http://127.0.0.1:8000/api/CustomUserAPI/${user.id}/type=${type}/`, {
+                method: 'PUT',
+                headers: {
+                    Authorization: `Token ${token}`,
+                },
+                body: submitData
+            })
+            const data = await response.json()
+            if (response.status >= 200 && response.status <= 299) {
+                handleFetchUser(token)
+                setErrors([])
+                console.log(type)
+                switch (type) {
+                    case 'change_email':
+                        setMessage('You have successfully changed your email')
+                        break;
+                    case 'change_password': 
+                        setMessage('You have successfully changed your password')
+                        break;
+                    case 'change_profile_picture':
+                        setMessage('You have successfully changed your profile picture')
+                        break;
+                    default:
+                        setMessage('You have successfully changed your username')
+                        break;
+                }
+            } else {
+                setErrors(data.non_field_errors)
+                setMessage()
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     const renderForm = (type) => {
         switch (type) {
-            case 'changeEmail':
+            case 'change_email':
                 return (
-                    <Form>
+                    <Form onSubmit={handleSubmit}>
+                        <legend>Change Email</legend>
+                        <Message errors={errors} nonField={true} />
+                        <Message message={message} nonField={true} />
                         <label>New Email</label>
-                        <input type='text' name='newEmail' required/>
+                        <input type='text' name='email' onChange={handleChange} required/>
                         <label>Password</label>
-                        <input type='password' name='password' required/>
-                        <Button>Change Email</Button>
+                        <input type='password' name='password' onChange={handleChange} required/>
+                        <Button type='submit'>Change Email</Button>
                     </Form>
                 )
-            case 'changePassword': 
+            case 'change_password': 
                 return (
-                    <Form>
+                    <Form onSubmit={handleSubmit}>
+                        <legend>Change Password</legend>
+                        <Message errors={errors} nonField={true} />
+                        <Message message={message} nonField={true} />
                         <label>Current Password</label>
-                        <input type='text' name='password' required/>
+                        <input type='password' name='password' onChange={handleChange} required/>
                         <label>New Password</label>
-                        <input type='password' name='newPassword' required/>
+                        <input type='password' name='new_password' onChange={handleChange} required/>
                         <label>Confirm New Password</label>
-                        <input type='password' name='newPassword2' required/>
-                        <Button>Change Password</Button>
+                        <input type='password' name='confirm_password' onChange={handleChange} required/>
+                        <Button type='submit'>Change Password</Button>
                     </Form>
                 )
-            case 'changeProfilePicture':
+            case 'change_profile_picture':
                 return (
-                    <Form>
+                    <Form onSubmit={handleSubmit} method='PUT' encType='multipart/form-data'>
+                        <legend>Change Profile Picture</legend>
+                        <Message errors={errors} nonField={true} />
+                        <Message message={message} nonField={true} />
                         <label>New Profile Picture</label>
-                        <Button onClick={() => fileRef.current.click()}>Choose File</Button>
-                        <input type='file' name='profilePicture' ref={fileRef} required/>
-                        <Button>Change Profile Picture</Button>
+                        <Button type='button' onClick={() => fileRef.current.click()} extraStyle={'margin-bottom: 10px;'}>Choose File</Button>
+                        <input type='file' name='profile_picture' ref={fileRef} onChange={handleChange} required/>
+                        <label>Password</label>
+                        <input type='password' name='password' onChange={handleChange} required/>
+                        <Button type='submit'>Change Profile Picture</Button>
                     </Form>
                 )
-            default: // changeUsername
+            default: // change_username
                 return (
-                    <Form>
+                    <Form onSubmit={handleSubmit}>
+                        <legend>Change Username</legend>
+                        <Message errors={errors} nonField={true} />
+                        <Message message={message} nonField={true} />
                         <label>New Username</label>
-                        <input type='text' name='newUsername' required/>
+                        <input type='text' name='username' onChange={handleChange} required/>
                         <label>Password</label>
-                        <input type='password' name='password' required/>
-                        <Button>Change Username</Button>
+                        <input type='password' name='password' onChange={handleChange} required/>
+                        <Button type='submit'>Change Username</Button>
                     </Form>
                 )
         }
@@ -54,13 +134,16 @@ const UserSettings = () => {
 
     return (
         <ContentWrapper>
-            <div>
-                <Button onClick={() => setType('changeUsername')}>Change Username</Button>
-                <Button onClick={() => setType('changePassword')}>Change Password</Button>
-                <Button onClick={() => setType('changeEmail')}>Change Email</Button>
-                <Button onClick={() => setType('changeProfilePicture')}>Change Profile Picture</Button>
-            </div>
-            {renderForm(type)}
+            <SettingsContent>
+                <ButtonsWrapper>
+                    <Button onClick={() => handleSetType('change_username')}>Change Username</Button>
+                    <Button onClick={() => handleSetType('change_password')}>Change Password</Button>
+                    <Button onClick={() => handleSetType('change_email')}>Change Email</Button>
+                    <Button onClick={() => handleSetType('change_profile_picture')}>Change Profile Picture</Button>
+                </ButtonsWrapper>
+                {renderForm(type)}
+            </SettingsContent>
+
         </ContentWrapper>
     )
 }
