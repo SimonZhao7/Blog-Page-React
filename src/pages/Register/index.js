@@ -10,14 +10,15 @@ const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-
-        const data = {...formState}
+        const submitData = new FormData()
+        Object.keys(formState).map(key => (
+            submitData.append(key, formState[key])
+        ))
 
         try {
-            const response = await fetch('http://localhost:8000/api/CustomUserAPI/', {
+            const response = await fetch('http://localhost:8000/api/register/', {
                 method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(data)
+                body: submitData
             })
             const result = await response.json()
             if (response.status >= 200 && response.status <= 299) {
