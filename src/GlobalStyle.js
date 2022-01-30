@@ -80,7 +80,8 @@ export const Form = styled.form`
 
         transition: border-color 0.3s;
 
-        :hover {
+        :hover, :focus {
+            outline: none;
             border-color: var(--darkGray);
         }
     }

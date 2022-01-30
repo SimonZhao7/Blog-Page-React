@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { Navigate } from 'react-router-dom';
 import { useAppContext } from '../../context';
 import Message from '../../components/Message';
 import { ContentWrapper, Form, Button } from '../../GlobalStyle';
@@ -134,6 +135,7 @@ const UserSettings = () => {
 
     return (
         <ContentWrapper>
+            {!user && <Navigate to={'/login'} />}
             <SettingsContent>
                 <ButtonsWrapper>
                     <Button onClick={() => handleSetType('change_username')}>Change Username</Button>

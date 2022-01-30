@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import { useAppContext } from "../../context";
 import { ContentWrapper, Spinner } from "../../GlobalStyle";
@@ -12,32 +12,28 @@ const Profile = () => {
     const [loading, setLoading] = useState(true)
     const usernameParam = useParams('username').username
 
-    useEffect(() => {
-        const fetchUserDetails = async () => {
-            setLoading(true)
-            const response = await fetch(`http://localhost:8000/api/CustomUserAPI/username=${usernameParam}/`, {
-                headers: {Authorization: `Token ${token}`}
-            })
-            const data = await response.json()
-            setViewedUser(data)
-            setLoading(false)
-        }
-        fetchUserDetails()
-    }, [token, usernameParam])
+    const fetchUserDetails = async () => {
+        setLoading(true)
+        const response = await fetch(`http://localhost:8000/api/CustomUserAPI/username=${usernameParam}/`, {
+            headers: {Authorization: `Token ${token}`}
+        })
+        const data = await response.json()
+        setViewedUser(data)
+        setLoading(false)
+    }
 
     if (loading) {
         return(
             <ContentWrapper>
+                {!user && <Navigate to='/login' />}
                 <Spinner></Spinner>
             </ContentWrapper>
         )
     }
 
+    fetchUserDetails()
     return (
         <ContentWrapper>
-            {!user && 
-                <Navigate to='/login'/>
-            }
             <UserContent>
                 <img src={`http://localhost:8000${viewedUser.profile_picture}`} alt='profile-pic' />
                 <UserDetail {...viewedUser} />
