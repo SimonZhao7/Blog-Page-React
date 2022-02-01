@@ -23,6 +23,7 @@ const Profile = () => {
                 setLoading(false)
             }
         }
+        setLoading(true)
         let isMounted = true
         fetchUserDetails()
         return () => {isMounted = false}

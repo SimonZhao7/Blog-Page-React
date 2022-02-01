@@ -20,9 +20,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         const submitData = new FormData()
-        Object.keys(formState).map(key => (
-            submitData.append(key, formState[key])
-        ))
+        Object.keys(formState).forEach(key => submitData.append(key, formState[key]))
 
         try {
             const response = await fetch('http://localhost:8000/api/login/', {

@@ -19,7 +19,6 @@ const UserSettings = () => {
             ...formData,
             [event.target.name]: event.target.type === 'file' ? event.target.files[0] : event.target.value,
         })
-        console.log(formData)
     }
 
     const handleSetType = (type) => {
@@ -31,9 +30,7 @@ const UserSettings = () => {
 
     const handleSubmit = async (e) => {
         const submitData = new FormData()
-        Object.keys(formData).map(key => (
-            submitData.append(key, formData[key])
-        ))
+        Object.keys(formData).forEach(key => submitData.append(key, formData[key]))
 
         e.preventDefault()
 
@@ -49,7 +46,6 @@ const UserSettings = () => {
             if (response.status >= 200 && response.status <= 299) {
                 handleFetchUser(token)
                 setErrors([])
-                console.log(type)
                 switch (type) {
                     case 'change_email':
                         setMessage('You have successfully changed your email')
@@ -145,7 +141,6 @@ const UserSettings = () => {
                 </ButtonsWrapper>
                 {renderForm(type)}
             </SettingsContent>
-
         </ContentWrapper>
     )
 }
