@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAppContext } from '../../context';
 import Message from '../../components/Message';
-import { ContentWrapper, Form, Button } from '../../GlobalStyle';
+import { ContentWrapper, Form, FormInput, Button } from '../../GlobalStyle';
 import { SettingsContent, ButtonsWrapper } from './UserSettings.styles';
 
 
@@ -78,9 +78,9 @@ const UserSettings = () => {
                         <Message errors={errors} nonField={true} />
                         <Message message={message} nonField={true} />
                         <label>New Email</label>
-                        <input type='text' name='email' onChange={handleChange} required/>
+                        <FormInput type='text' name='email' onChange={handleChange} required/>
                         <label>Password</label>
-                        <input type='password' name='password' onChange={handleChange} required/>
+                        <FormInput type='password' name='password' onChange={handleChange} required/>
                         <Button type='submit'>Change Email</Button>
                     </Form>
                 )
@@ -91,11 +91,11 @@ const UserSettings = () => {
                         <Message errors={errors} nonField={true} />
                         <Message message={message} nonField={true} />
                         <label>Current Password</label>
-                        <input type='password' name='password' onChange={handleChange} required/>
+                        <FormInput type='password' name='password' onChange={handleChange} required/>
                         <label>New Password</label>
-                        <input type='password' name='new_password' onChange={handleChange} required/>
+                        <FormInput type='password' name='new_password' onChange={handleChange} required/>
                         <label>Confirm New Password</label>
-                        <input type='password' name='confirm_password' onChange={handleChange} required/>
+                        <FormInput type='password' name='confirm_password' onChange={handleChange} required/>
                         <Button type='submit'>Change Password</Button>
                     </Form>
                 )
@@ -107,9 +107,9 @@ const UserSettings = () => {
                         <Message message={message} nonField={true} />
                         <label>New Profile Picture</label>
                         <Button type='button' onClick={() => fileRef.current.click()} extraStyle={'margin-bottom: 10px;'}>Choose File</Button>
-                        <input type='file' name='profile_picture' ref={fileRef} onChange={handleChange} required/>
+                        <FormInput type='file' name='profile_picture' ref={fileRef} onChange={handleChange} required/>
                         <label>Password</label>
-                        <input type='password' name='password' onChange={handleChange} required/>
+                        <FormInput type='password' name='password' onChange={handleChange} required/>
                         <Button type='submit'>Change Profile Picture</Button>
                     </Form>
                 )
@@ -120,9 +120,9 @@ const UserSettings = () => {
                         <Message errors={errors} nonField={true} />
                         <Message message={message} nonField={true} />
                         <label>New Username</label>
-                        <input type='text' name='username' onChange={handleChange} required/>
+                        <FormInput type='text' name='username' onChange={handleChange} required/>
                         <label>Password</label>
-                        <input type='password' name='password' onChange={handleChange} required/>
+                        <FormInput type='password' name='password' onChange={handleChange} required/>
                         <Button type='submit'>Change Username</Button>
                     </Form>
                 )

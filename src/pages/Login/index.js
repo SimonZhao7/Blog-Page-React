@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Navigate } from "react-router-dom";
 import { useAppContext } from "../../context";
 import Message from "../../components/Message";
-import { Form, Button, FullWrapper } from '../../GlobalStyle';
+import { Form, FormInput, Button, FullWrapper } from '../../GlobalStyle';
 
 
 const Login = () => {
@@ -49,9 +49,9 @@ const Login = () => {
                 <legend>Login</legend>
                 <Message errors={errors.non_field_errors} nonField={true}/>
                 <label>Username</label>
-                <input type='text' name='username' onChange={handleChange} required/>
+                <FormInput type='text' name='username' onChange={handleChange} required/>
                 <label>Password</label>
-                <input type='password' name='password' onChange={handleChange} required/>
+                <FormInput type='password' name='password' onChange={handleChange} required/>
                 <p>Don't have an account? Register for one <a href='/register'>here</a></p>
                 <Button>Log In</Button>
             </Form>

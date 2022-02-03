@@ -70,22 +70,6 @@ export const Form = styled.form`
         margin-bottom: 15px;
     }
 
-    input {
-        width: 100%;
-        height: 40px;
-        margin-bottom: 10px;
-        border-radius: 5px;
-        border: var(--lightGray) solid 2px;
-        color: black;
-
-        transition: border-color 0.3s;
-
-        :hover, :focus {
-            outline: none;
-            border-color: var(--darkGray);
-        }
-    }
-
     input[type='file'] {
         display: none;
     }
@@ -102,6 +86,22 @@ export const Form = styled.form`
     @media screen and (max-width: 575px) {
         width: 100%;
         padding: 50px 10px 0;
+    }
+`
+
+export const FormInput = styled.input`
+    width: 100%;
+    height: 40px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: var(--lightGray) solid 2px;
+    color: black;
+
+    transition: border-color 0.3s;
+
+    :hover, :focus {
+        outline: none;
+        border-color: var(--darkGray);
     }
 `
 

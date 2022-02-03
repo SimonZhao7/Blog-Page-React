@@ -36,6 +36,7 @@ export const Image = styled.img`
     width: 40px;
     height: 40px;
     object-fit: cover;
+    aspect-ratio: 1 / 1;
     border-radius: 50%;
 
     @media screen and (max-width: 768px) {

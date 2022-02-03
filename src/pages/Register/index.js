@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Navigate, Link } from "react-router-dom";
 import Message from '../../components/Message';
-import { Button, Form, FullWrapper } from '../../GlobalStyle';
+import { Button, Form, FormInput, FullWrapper } from '../../GlobalStyle';
 
 const Register = () => {
     const [formState, setFormState] = useState({})
@@ -46,16 +46,16 @@ const Register = () => {
                 <Message errors={errors.non_field_errors} nonField={true}/>
                 <Message errors={errors.email}/>
                 <label>Email</label>
-                <input type="text" placeholder="Email" name="email" onChange={handleChange} required />
+                <FormInput type="text" placeholder="Email" name="email" onChange={handleChange} required />
                 <Message errors={errors.username}/>
                 <label>Username</label>
-                <input type="text" placeholder="Username" name="username" onChange={handleChange} required />
+                <FormInput type="text" placeholder="Username" name="username" onChange={handleChange} required />
                 <Message errors={errors.password}/>
                 <label>Password</label>
-                <input type="password" placeholder="Enter a Password" name="password" onChange={handleChange} required />
+                <FormInput type="password" placeholder="Enter a Password" name="password" onChange={handleChange} required />
                 <Message errors={errors.password2}/>
                 <label>Confirm Password</label>
-                <input type="password" placeholder="Re-enter your password" name="password2" onChange={handleChange} required />
+                <FormInput type="password" placeholder="Re-enter your password" name="password2" onChange={handleChange} required />
                 <p>Already have an account? Log in <Link to='/login'>here</Link></p>
                 <Button type='submit'>Register</Button>
             </Form>  
