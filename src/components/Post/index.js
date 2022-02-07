@@ -9,9 +9,29 @@ import { BsChatLeftText } from 'react-icons/bs';
 import moment from 'moment';
 
 
-const Post = ({ user: pUser, image, caption, aspect_ratio: aspectRatio, users_liked: usersLiked, likes, date_time_posted: date }) => {
+const Post = ({ id, user: pUser, image, caption, aspect_ratio: aspectRatio, users_liked: usersLiked, likes, date_time_posted: date }) => {
     const { user, token } = useAppContext()
     const [postUser, setPostUser] = useState({})
+    const [likedUsers, setLikedUsers] = useState(usersLiked)
+    const [postLikes, setPostLikes] = useState(likes)
+
+    const handleLikeClick = () => {
+        const data = new FormData()
+        data.append('user_id', user.id)
+        fetch(`http://localhost:8000/api/PostAPI/${id}/`, {
+            method: 'PUT',
+            headers: {Authorization: `Token ${token}`},
+            body: data
+        })
+        
+        if (likedUsers.includes(user.id)) {
+            setLikedUsers(likedUsers.filter(likeUser => likeUser !== user.id))
+            setPostLikes(prev => prev - 1)
+        } else {
+            setLikedUsers([...likedUsers, user.id])
+            setPostLikes(prev => prev + 1)
+        }
+    }
 
     useEffect(() => {
         const fetchUser = () => {
@@ -42,13 +62,13 @@ const Post = ({ user: pUser, image, caption, aspect_ratio: aspectRatio, users_li
             <PostData>
                 <IconBar>
                     <Icons>
-                        {usersLiked.includes(user.id) 
-                            ? <AiFillHeart color='red' size='1.4rem'/>
-                            : <AiOutlineHeart size='1.4rem' />
+                        {likedUsers.includes(user.id) 
+                            ? <AiFillHeart color='red' size='1.4rem' onClick={handleLikeClick} />
+                            : <AiOutlineHeart size='1.4rem' onClick={handleLikeClick} />
                         }
                         <BsChatLeftText />
                     </Icons>
-                    <h4>{likes} {likes === 1 ? 'like' : 'likes'}</h4>
+                    <h4>{postLikes} {postLikes === 1 ? 'like' : 'likes'}</h4>
                 </IconBar>
                 <Comment>{caption}</Comment>
                 <DatePosted>Posted: {moment(date).format('MMMM Do YYYY, h:mm:ss a')}</DatePosted>
