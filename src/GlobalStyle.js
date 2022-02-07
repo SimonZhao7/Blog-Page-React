@@ -46,6 +46,7 @@ export const ContentWrapper = styled.div`
     background: white;
     padding: 10px;
     margin: auto;
+    overflow-y: auto;
 
     @media screen and (min-width: 768px) {
         width: 70%;
