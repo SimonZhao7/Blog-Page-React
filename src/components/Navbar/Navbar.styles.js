@@ -29,6 +29,10 @@ export const Content = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    .profile-url {
+        padding: 0;
+    }
 `;
 
 export const Image = styled.img`

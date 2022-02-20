@@ -8,7 +8,7 @@ export const NavLinks = () => {
     return (
         <>    
         <Link to='/' onClick={closeSidebar}>Home</Link>
-        <Link to='' onClick={closeSidebar}>Create</Link>
+        <Link to='/create' onClick={closeSidebar}>Create</Link>
         {user
             ? <Link to='/logout' onClick={removeUser}>Logout</Link>
             : <Link to='/login' onClick={closeSidebar}>Login</Link>

@@ -8,7 +8,8 @@ import Login from '../Login';
 import Logout from '../Logout';
 import Register from '../Register';
 import Profile from '../Profile';
-import UserSettings from '../UserSettings'
+import UserSettings from '../UserSettings';
+import PostCreate from '../PostCreate';
 
 
 const Main = () => {
@@ -21,6 +22,7 @@ const Main = () => {
                 <Route path='/login' element={<Login />}/>
                 <Route path='/register' element={<Register />}/>
                 <Route path='/logout' element={<Logout />}/>
+                <Route path='/create' element={<PostCreate />} />
                 <Route path='/:username' element={<ProfileProvider><Profile /></ProfileProvider>}/>
                 <Route path='/settings' element={<UserSettings />}/>
             </Routes>

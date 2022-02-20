@@ -18,7 +18,7 @@ const Navbar = () => {
             {user && 
                 <Content>
                     <SearchBar />
-                    <Image src={user ? `http://localhost:8000${user.profile_picture}` : NoImg} alt='profile-picture'/>
+                    <a className='profile-url' href={`/${user.username}`}><Image src={user ? `http://localhost:8000${user.profile_picture}` : NoImg} alt='profile-picture'/></a>
                     <SidebarButton onClick={openSidebar}><GiHamburgerMenu /></SidebarButton>
                 </Content>
             }

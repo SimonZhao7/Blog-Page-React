@@ -72,7 +72,25 @@ export const Form = styled.form`
     }
 
     input[type='file'] {
-        display: none;
+        font-size: var(--fontReg);
+        max-width: 575px;
+        border: 0;
+    }
+
+    input[type='file']::file-selector-button {
+        background-color: var(--lightBlue);
+        color: white;
+        width: 40%;
+        height: 100%;
+        border: 0;
+        border-radius: 5px;
+        font-size: var(--fontReg);
+        transition: background-color 0.25s;
+        margin-right: 15px;
+    }
+
+    input[type='file']::file-selector-button:hover {
+        background-color: var(--lightBlueHover);
     }
 
     p {
@@ -84,6 +102,21 @@ export const Form = styled.form`
         text-decoration: none;
     }
 
+    > input, > textarea {
+        width: 100%;   
+        margin-bottom: 10px;
+        border-radius: 5px;
+        border: var(--lightGray) solid 2px;
+        color: black; 
+
+        transition: border-color 0.3s;
+
+        :hover, :focus {
+            outline: none;
+            border-color: var(--darkGray);
+        }
+    }
+
     @media screen and (max-width: 575px) {
         width: 100%;
         padding: 50px 10px 0;
@@ -91,19 +124,7 @@ export const Form = styled.form`
 `
 
 export const FormInput = styled.input`
-    width: 100%;
     height: 40px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    border: var(--lightGray) solid 2px;
-    color: black;
-
-    transition: border-color 0.3s;
-
-    :hover, :focus {
-        outline: none;
-        border-color: var(--darkGray);
-    }
 `
 
 // Buttons

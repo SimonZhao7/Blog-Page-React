@@ -7,6 +7,16 @@ export const SearchInput = styled(FormInput)`
     margin: 0 20px 0 0;
     width: 350px;
 
+    border-radius: 5px;
+    border: var(--lightGray) solid 2px;
+
+    transition: border-color 0.3s;
+
+    :hover, :focus {
+        outline: none;
+        border-color: var(--darkGray);
+    }
+
     @media screen and (max-width: 768px) {
         display: none;
     }
