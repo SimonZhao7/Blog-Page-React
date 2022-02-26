@@ -32,7 +32,7 @@ const Home = () => {
         <PostContentWrapper>
             {!user && <Navigate to='/login' />}
             {posts.map((post, index) => (
-                <Post key={index} {...post} />
+                <Post key={index} post={post} />
             ))}
         </PostContentWrapper>
     );

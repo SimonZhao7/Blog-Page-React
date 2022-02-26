@@ -8,6 +8,7 @@ export const DarkWrapper = styled.div`
     display: flex;
     position: absolute;
     top: 0;
+    left: 0;
     align-items: center;
     justify-content: center;
     z-index: 10;
