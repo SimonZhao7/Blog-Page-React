@@ -6,7 +6,7 @@ import PostData from '../PostData';
 import { useAppContext } from '../../context';
 
 
-const PostModal = ({ isOpen, closeModal, postUser, post }) => {
+const PostModal = ({ isOpen, closeModal, postUser, post, postDataArgs }) => {
     const { token } = useAppContext()
     const { id, image, aspect_ratio: aspectRatio } = post
     const [comments, setComments] = useState([])
@@ -53,7 +53,7 @@ const PostModal = ({ isOpen, closeModal, postUser, post }) => {
                                 ))
                             }
                         </CommentList>
-                        <PostData post={post} />
+                        <PostData post={post} postDataArgs={postDataArgs} />
                         <CommentContent>
                             <CommentInput placeholder='Add a comment...' />
                             <CommentButton>Post</CommentButton>

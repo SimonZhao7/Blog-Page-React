@@ -9,10 +9,12 @@ import PosterDetails from '../PosterDetails';
 
 
 const Post = ({ post }) => {
-    const { user: pUser, image, aspect_ratio: aspectRatio } = post
-    const { token } = useAppContext()
+    const { user: pUser, image, aspect_ratio: aspectRatio, id, users_liked: usersLiked, likes } = post
+    const { user, token } = useAppContext()
     const [postUser, setPostUser] = useState({})
     const [isModalOpen, setIsModalOpen] = useState(false)
+    const [likedUsers, setLikedUsers] = useState(usersLiked)
+    const [postLikes, setPostLikes] = useState(likes)
 
     const openCommentModal = () => {
         setIsModalOpen(true)
@@ -21,6 +23,27 @@ const Post = ({ post }) => {
     const closeCommentModal = () => {
         setIsModalOpen(false)
     }
+
+    const handleLikeClick = () => {
+        const data = new FormData()
+        data.append('user_id', user.id)
+        fetch(`http://localhost:8000/api/PostAPI/${id}/`, {
+            method: 'PUT',
+            headers: {Authorization: `Token ${token}`},
+            body: data
+        })
+        
+        if (likedUsers.includes(user.id)) {
+            setLikedUsers(likedUsers.filter(likeUser => likeUser !== user.id))
+            setPostLikes(prev => prev - 1)
+        } else {
+            setLikedUsers([...likedUsers, user.id])
+            setPostLikes(prev => prev + 1)
+        }
+    }
+
+    // Reducing Line Length When Passing Variables Downward
+    const postDataArgs = {likedUsers: likedUsers, postLikes: postLikes, handleClick: handleLikeClick, openModal: openCommentModal}
 
     useEffect(() => {
         const fetchUser = () => {
@@ -44,8 +67,8 @@ const Post = ({ post }) => {
             <PostImgWrapper>
                 <PostImg src={image} alt='post img' className={aspectRatio}/>
             </PostImgWrapper>
-            <PostData post={post} openModal={openCommentModal} />
-            <PostModal isOpen={isModalOpen} closeModal={closeCommentModal} postUser={postUser} post={post} />
+            <PostData post={post} postDataArgs={postDataArgs} />
+            <PostModal isOpen={isModalOpen} closeModal={closeCommentModal} postUser={postUser} post={post} postDataArgs={postDataArgs} />
         </PostContent>
     )
 }
