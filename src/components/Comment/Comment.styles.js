@@ -6,6 +6,7 @@ export const CommentWrapper = styled.div`
     display: flex;
     gap: 10px;
     padding: 12px 0;
+    padding-left: ${props => props.isReply ? '40px' : 0};
 `
 
 export const CommentImg = styled.div`
@@ -28,4 +29,32 @@ export const CommentText = styled.div`
         margin-top: 5px;
         font-size: 14px;
     }
+`
+
+export const CommentActions = styled.div`
+    display: flex;
+    margin: 10px 0;
+    gap: 10px;
+`
+
+export const ReplyButton = styled.button`
+    display: flex;
+    align-items: center;
+    padding: 0;
+    font-weight: 600;
+    background-color: transparent;
+    border: none;
+    color: var(--darkGray);
+
+    :hover {
+        cursor: pointer;
+    }
+`
+
+export const GrayLine = styled.div`
+    display: inline-block;
+    height: 1px;
+    width: 20px;
+    margin-right: 10px;
+    background-color: darkgray;
 `

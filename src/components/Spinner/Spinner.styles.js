@@ -18,6 +18,6 @@ export const SpinnerContent = styled.div`
         }
     }
 
-    width: 40px;
-    height: 40px;
+    width: ${props => props.size ? props.size : '40px'};
+    height: ${props => props.size ? props.size : '40px'};
 `
