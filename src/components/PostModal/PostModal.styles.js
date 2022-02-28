@@ -30,9 +30,16 @@ export const CommentSection = styled.div`
 
 export const CommentList = styled.div`
     height: 100%;
+    padding: 0 15px;
+
+    overflow-y: scroll;
+
+    ::-webkit-scrollbar {
+        display: none;
+    }
 `
 
-export const CommentContent = styled.div`
+export const CommentForm = styled.form`
     display: flex;
     border-top: 2px solid var(--lightBlue);
 `
