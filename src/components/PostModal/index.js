@@ -1,18 +1,19 @@
 import React, { useState, useEffect, useRef, Fragment } from 'react';
 import { DarkWrapper } from '../ListModal/ListModal.styles';
-import { PostModalContent, ImgWrapper, PostImg, CommentSection, CommentList, CommentForm, CommentInput, CommentButton } from './PostModal.styles';
+import { PostModalContent, ImgWrapper, PostImg, CommentSection, CommentList } from './PostModal.styles';
 import Comment from '../Comment';
 import PosterDetails from '../PosterDetails';
 import PostData from '../PostData';
+import PostCommentForm from '../PostCommentForm';
 import { useAppContext } from '../../context';
 
 
 const PostModal = ({ isOpen, closeModal, postUser, post, postDataArgs }) => {
-    const { user, token } = useAppContext()
+    const { token } = useAppContext()
     const { id, image, aspect_ratio: aspectRatio } = post
-    const [commentInput, setCommentInput] = useState("");
     const [comments, setComments] = useState([])
     const bottom = useRef()
+    const commentFormArgs = {post: post, comments: comments, setComments: setComments, bottom: bottom}
 
     useEffect(() => {
         const handleClickEvent = (event) => {
@@ -39,34 +40,6 @@ const PostModal = ({ isOpen, closeModal, postUser, post, postDataArgs }) => {
         }
     }, [closeModal, id, token])
 
-    const addComment = async(e) => {
-        e.preventDefault();
-        
-        const formData = new FormData();
-        formData.append('message', commentInput);
-        formData.append('post', id);
-        formData.append('user', user.id);
-
-        if (commentInput !== "") {
-            try {
-                const response = await fetch(`http://localhost:8000/api/CommentAPI/`, {
-                    method: 'POST',
-                    headers: {
-                        Authorization: `Token ${token}`,
-                    },
-                    body: formData
-                })
-                const data = await response.json()
-                setComments([...comments, data])
-                setCommentInput("")
-                bottom.current.scrollIntoView({ behavior: 'smooth' })
-            } catch (error) {
-                console.log(error)
-            }    
-        }
-        
-    }
-
     return (
         <>
         {isOpen && 
@@ -83,9 +56,9 @@ const PostModal = ({ isOpen, closeModal, postUser, post, postDataArgs }) => {
                                     <Fragment key={index}>
                                         {index < comments.length - 1 
                                             ?
-                                            <Comment comment={comment} />
+                                            <Comment comment={comment} commentFormArgs={commentFormArgs} />
                                             :
-                                            <Comment comment={comment} />
+                                            <Comment comment={comment} commentFormArgs={commentFormArgs} />
                                         }
                                     </Fragment>
                                 ))
@@ -93,10 +66,7 @@ const PostModal = ({ isOpen, closeModal, postUser, post, postDataArgs }) => {
                             <div ref={bottom}></div>
                         </CommentList>
                         <PostData post={post} postDataArgs={postDataArgs} />
-                        <CommentForm onSubmit={addComment}>
-                            <CommentInput type='text' placeholder='Add a comment...' value={commentInput} onChange={e => setCommentInput(e.target.value)}/>
-                            <CommentButton type='submit'>Post</CommentButton>
-                        </CommentForm>
+                        <PostCommentForm commentFormArgs={commentFormArgs} />
                     </CommentSection>
                 </PostModalContent>
             </DarkWrapper>

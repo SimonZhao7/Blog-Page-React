@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useAppContext } from '../../context';
+import PostCommentForm from '../PostCommentForm';
 import { CommentWrapper, CommentImg, CommentText, CommentActions, ReplyButton, GrayLine } from './Comment.styles';
 
 
-const Comment = ({ comment }) => {
+const Comment = ({ comment, commentFormArgs }) => {
     const { token } = useAppContext()
     const { user: commentUserId, id: commentId, is_reply: isReply, likes } = comment
     const [commentUser, setCommentUser] = useState({})
     const [showReplies, setShowReplies] = useState(false)
     const [replies, setReplies] = useState([])
+    const [showReplyInput, setShowReplyInput] = useState(false)
+    const replyButton = useRef()
 
     useEffect(() => {
         const fetchUser = async() => {
@@ -53,7 +56,11 @@ const Comment = ({ comment }) => {
                 <CommentActions>
                     <ReplyButton>{likes} likes</ReplyButton>
                     <ReplyButton>Like</ReplyButton>
+                    <ReplyButton onClick={() => setShowReplyInput(true)} ref={replyButton}>Reply</ReplyButton>
                 </CommentActions>
+                {showReplyInput && 
+                    <PostCommentForm commentFormArgs={commentFormArgs} isReply={true} setReplies={setReplies} comment={comment} setShowReplyInput={setShowReplyInput} />
+                }
                 {!isReply && replies.length > 0 && !showReplies &&
                     <ReplyButton onClick={() => setShowReplies(true)}>
                         <GrayLine></GrayLine> View Replies ({replies.length})
@@ -68,7 +75,7 @@ const Comment = ({ comment }) => {
         </CommentWrapper>
         {showReplies && 
             replies.map((reply, index) => (
-                <Comment key={index} comment={reply} />
+                <Comment key={index} comment={reply} commentFormArgs={commentFormArgs} />
             ))
         }
         </>

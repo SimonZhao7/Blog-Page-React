@@ -38,31 +38,3 @@ export const CommentList = styled.div`
         display: none;
     }
 `
-
-export const CommentForm = styled.form`
-    display: flex;
-    border-top: 2px solid var(--lightBlue);
-`
-
-export const CommentInput = styled.input`
-    flex: 9;
-    height: 30px;
-    padding: 20px;
-    border: 0;
-
-    :focus {
-        outline: none;
-    }
-`
-
-export const CommentButton = styled.button`
-    flex: 1;
-    color: #046bd9;
-    border-radius: 0;
-    border: 0;
-    background-color: white;
-
-    :hover {
-        cursor: pointer;
-    }
-`
