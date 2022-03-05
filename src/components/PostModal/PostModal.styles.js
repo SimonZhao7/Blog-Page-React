@@ -6,6 +6,12 @@ export const PostModalContent = styled(ModalContent)`
     width: auto;
     height: 700px;
     display: flex;
+
+    @media screen and (max-width: 500px) {
+        width: 100%;
+        height: 50%;
+        margin: 0 15px;
+    }
 `
 
 export const ImgWrapper = styled.div`
@@ -13,6 +19,11 @@ export const ImgWrapper = styled.div`
     align-items: center;
     justify-content: center;
     background-color: black;
+
+    @media screen and (max-width: 500px) {
+        width: 100%;
+        height: 100%;
+    }
 `
 
 export const PostImg = styled.img`
@@ -26,6 +37,10 @@ export const CommentSection = styled.div`
     flex-direction: column;
     justify-content: space-between;
     width: 500px;
+
+    @media screen and (max-width: 800px) {
+        display: none;
+    }
 `
 
 export const CommentList = styled.div`
