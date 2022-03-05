@@ -58,3 +58,7 @@ export const GrayLine = styled.div`
     margin-right: 10px;
     background-color: darkgray;
 `
+
+export const HeartWrapper = styled.div`
+    padding-top: 5px;
+`

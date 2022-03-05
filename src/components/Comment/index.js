@@ -1,17 +1,39 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useAppContext } from '../../context';
 import PostCommentForm from '../PostCommentForm';
-import { CommentWrapper, CommentImg, CommentText, CommentActions, ReplyButton, GrayLine } from './Comment.styles';
+import { CommentWrapper, CommentImg, CommentText, CommentActions, ReplyButton, GrayLine, HeartWrapper } from './Comment.styles';
+import { BsHeart, BsHeartFill } from 'react-icons/bs';
 
 
 const Comment = ({ comment, commentFormArgs }) => {
-    const { token } = useAppContext()
-    const { user: commentUserId, id: commentId, is_reply: isReply, likes } = comment
+    const { user, token } = useAppContext()
+    const { user: commentUserId, id: commentId, is_reply: isReply, users_liked } = comment
     const [commentUser, setCommentUser] = useState({})
     const [showReplies, setShowReplies] = useState(false)
     const [replies, setReplies] = useState([])
+    const [likes, setLikes] = useState(users_liked)
     const [showReplyInput, setShowReplyInput] = useState(false)
     const replyButton = useRef()
+    const isLiked = likes.includes(user.id)
+
+    const handleLike = () => {
+        const body = new FormData()
+        body.append('user_id', user.id)
+
+        fetch(`http://localhost:8000/api/CommentAPI/${commentId}/`, {
+            headers: {
+                Authorization: `Token ${token}`
+            },
+            method: 'PUT',
+            body: body
+        })
+        
+        if (isLiked) {
+            setLikes(prev => prev.filter(like => like !== user.id))
+        } else {
+            setLikes(prev => [...prev, user.id])
+        }
+    }
 
     useEffect(() => {
         const fetchUser = async() => {
@@ -54,8 +76,8 @@ const Comment = ({ comment, commentFormArgs }) => {
             <CommentText>
                 <p><b>{commentUser.username}</b> {comment.message}</p>
                 <CommentActions>
-                    <ReplyButton>{likes} likes</ReplyButton>
-                    <ReplyButton>Like</ReplyButton>
+                    <ReplyButton>{likes.length} {likes.length === 1 ? 'like' : 'likes'}</ReplyButton>
+                    <ReplyButton onClick={handleLike}>{isLiked ? 'Unlike' : 'Like'}</ReplyButton>
                     <ReplyButton onClick={() => setShowReplyInput(true)} ref={replyButton}>Reply</ReplyButton>
                 </CommentActions>
                 {showReplyInput && 
@@ -72,6 +94,13 @@ const Comment = ({ comment, commentFormArgs }) => {
                     </ReplyButton>
                 }
             </CommentText>
+            <HeartWrapper>
+                {isLiked
+                ? <BsHeartFill size='0.7rem' color='red' onClick={handleLike}/>
+                : <BsHeart size='0.70rem' onClick={handleLike} />
+                }
+                
+            </HeartWrapper>
         </CommentWrapper>
         {showReplies && 
             replies.map((reply, index) => (
